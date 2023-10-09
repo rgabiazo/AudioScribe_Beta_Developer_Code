@@ -5,7 +5,7 @@ AudioScribe is a GUI application for transcribing audio and video files to text.
 ## Features
 
 - **Drag and Drop Interface**: Easily drag and drop audio or video files directly into the application.
-- **Support for Local Files**: Transcribe `.mp3`, `.mp4`, and `.MOV` files present on your machine.
+- **Support for Local Files**: Transcribe `.mp3`,`.wav`, `.mp4`, and `.MOV` files present on your machine.
 - **YouTube URL Transcription**: Simply enter a valid YouTube URL, and AudioScribe will handle the downloading and transcription.
 - **Interactive GUI**: Features a sleek and user-friendly interface with functionalities like browsing files, saving transcriptions, and more.
 
