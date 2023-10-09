@@ -41,7 +41,7 @@ class MyGUI:
         # MAIN TEXTBOX - To input file name or URL
         self.textbox = tk.Entry(self.root, font=('Arial', 16), width=110)
         self.textbox.grid(row=1, column=1, padx=10, sticky=tk.W)
-        self.textbox.insert(0, "Drop a file, enter its name (.mp3, .mp4, .MOV) or a YouTube URL")
+        self.textbox.insert(0, "Drop a file, enter its name (.mp3, .wav, .mp4, .MOV) or a YouTube URL")
         # Add a "Browse" button next to the main textbox
         self.browse_button = tk.Button(self.root, text="Browse", command=self.browse_file)
         self.browse_button.grid(row=1, column=2)
@@ -137,7 +137,7 @@ class MyGUI:
 
         # Clearing textbox...
         self.textbox.delete(0, tk.END)
-        self.textbox.insert(0, "Drop a file, enter its name (.mp3, .mp4, .MOV) or a YouTube URL")
+        self.textbox.insert(0, "Drop a file, enter its name (.mp3, .wav, .mp4, .MOV) or a YouTube URL")
         self.textbox.config(fg="grey")
 
         # Clearing result_textbox...
@@ -165,7 +165,7 @@ class MyGUI:
         current_text = self.textbox.get()
 
         # If the current text is the placeholder
-        if current_text == "Drop a file, enter its name (.mp3, .mp4, .MOV) or a YouTube URL":
+        if current_text == "Drop a file, enter its name (.mp3, .wav, .mp4, .MOV) or a YouTube URL":
             # Clear the textbox
             self.textbox.delete(0, tk.END)
             # Change the text color to black
@@ -179,9 +179,9 @@ class MyGUI:
         # If the textbox is empty
         if not current_text:
             # Insert the placeholder at the beginning (for Text widget, if needed)
-            self.textbox.insert("1.0", "Drop a file, enter its name (.mp3, .mp4, .MOV) or a YouTube URL")
+            self.textbox.insert("1.0", "Drop a file, enter its name (.mp3, .wav, .mp4, .MOV) or a YouTube URL")
             # Insert the placeholder at the beginning (for Entry widget)
-            self.textbox.insert(0, "Drop a file, enter its name (.mp3, .mp4, .MOV) or a YouTube URL")
+            self.textbox.insert(0, "Drop a file, enter its name (.mp3, .wav, .mp4, .MOV) or a YouTube URL")
             # Change the color of the text to grey to indicate it's a placeholder
             self.textbox.config(fg="grey")
 

@@ -16,7 +16,7 @@ import socket
 username = getpass.getuser()
 
 # Valid file extensions
-valid_extensions = ['.mp4', '.MOV', '.mp3'] # Change here to add valid files
+valid_extensions = ['.mp4', '.MOV', '.mp3', '.wav']
 
 class AppManager:
     """Manages the application flow, including handling file inputs and starting the GUI."""
@@ -40,11 +40,11 @@ class AppManager:
         ext = os.path.splitext(file_path)[1]
 
         # Check for valid file extensions
-        if ext not in [".mp3", ".mp4", ".MOV"]:
-            raise ValueError(f"Invalid file extension: {ext}. Supported extensions are .mp3, .mp4, and .MOV")
+        if ext not in valid_extensions:
+            raise ValueError(f"Invalid file extension: {ext}. Supported extensions are .mp3, .wav, .mp4, and .MOV")
 
-        # If the file is not already an mp3, extract audio from it
-        if ext != ".mp3":
+        # If the file is a video format, extract audio from it
+        if ext in [".mp4", ".MOV"]:
             video = VideoFileClip(file_path)
             audio = video.audio
 
@@ -186,7 +186,7 @@ class AppManager:
         """
 
         # Validate if the user's input is the default placeholder or empty
-        if user_input == "Drop a file, enter its name (.mp3, .mp4, .MOV) or a YouTube URL" or user_input == "":
+        if user_input == "Drop a file, enter its name (.mp3, .wav, .mp4, .MOV) or a YouTube URL" or user_input == "":
             messagebox.showerror("Error", "Please input a valid file.")
             return  # Exit early
 
@@ -239,12 +239,18 @@ class AppManager:
                 messagebox.showerror("Error", "The provided video is unavailable.")
                 return
 
-        else:  # If the input is not a YouTube URL, assume it's a filename
+        else:  # If the input is not a YouTube URL
+
+            # Check if the user input contains "http" or "www", suggesting it might be a URL but not a YouTube URL
+            if "http" in self.stored_file or "www" in self.stored_file:
+                messagebox.showerror("Error", f"'{self.stored_file}' is not a valid YouTube URL or supported file.")
+                return
+
             self.file_name, self.file_ext = os.path.splitext(user_input)
 
             # Validate the file extension
             if self.file_ext not in valid_extensions:
-                message = f"'{self.stored_file}' is not a valid mp3, mp4, or MOV file."
+                message = f"'{self.stored_file}' is not a valid mp3, wav, mp4, or MOV file."
                 messagebox.showerror("Error", message)
                 return  # Exit early
 
