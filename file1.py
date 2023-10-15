@@ -82,12 +82,14 @@ class MyGUI:
         self.transcription_textbox.bind("<FocusIn>", self._on_transcription_focus_in)
         self.transcription_textbox.bind("<FocusOut>", self._on_transcription_focus_out)
 
+        # Placeholder text is inserted in the transcription textbox.
+        self.transcription_textbox.config(state=tk.NORMAL)  # Enable the textbox
+        self.transcription_textbox.insert("1.0", "Transcribed Text")  # Insert placeholder
+        self.transcription_textbox.config(state=tk.DISABLED)  # Disable the textbox again
+
         # Save button allows the user to save the transcribed text to a file.
         self.save_button = tk.Button(self.root, text="Save", command=self.save_as)
         self.save_button.grid(row=6, column=2, sticky=tk.NW, pady=(10, 0))
-
-        # Placeholder text is inserted in the center of the transcription textbox.
-        self.align_text_in_textbox(self.transcription_textbox, "Transcribed Text")
 
     def retrieve_input(self):
         """
